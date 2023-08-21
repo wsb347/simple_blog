@@ -22,7 +22,7 @@ public class PostService {
     public PostEntity create(PostRequest postRequest){
 
         PostEntity postEntity = PostEntity.builder()
-                .boardId(1L)
+                .boardId(5L)
                 .userName(postRequest.getUserName())
                 .password(postRequest.getPassword())
                 .email(postRequest.getEmail())
