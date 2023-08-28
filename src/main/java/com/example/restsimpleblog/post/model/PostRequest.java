@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PostRequest {
 
+    private long boardId = 1L;
 
     @NotBlank
     private String userName;
@@ -29,8 +30,10 @@ public class PostRequest {
     private String password;
 
     @NotBlank
-    @Email
     private String email;
+
+    @NotBlank
+    private String status;
 
     @NotBlank
     private String title;

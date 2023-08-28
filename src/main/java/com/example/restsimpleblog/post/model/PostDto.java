@@ -1,9 +1,8 @@
-package com.example.restsimpleblog.post.db;
+package com.example.restsimpleblog.post.model;
 
 import com.example.restsimpleblog.board.db.BoardEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.OrderBy;
 
 import java.time.LocalDateTime;
 
@@ -13,17 +12,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "post")
-public class PostEntity {
+public class PostDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "board_id")
-    @OrderBy(clause = "id desc")
-    private BoardEntity board;
+    private Long boardId;
 
     private String userName;
 
@@ -35,7 +28,6 @@ public class PostEntity {
 
     private String title;
 
-    @Column(columnDefinition = "TEXT")
     private String content;
 
     private LocalDateTime date;

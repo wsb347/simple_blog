@@ -1,6 +1,7 @@
-package com.example.restsimpleblog.board.db;
+package com.example.restsimpleblog.board.model;
 
 import com.example.restsimpleblog.post.db.PostEntity;
+import com.example.restsimpleblog.post.model.PostDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,21 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ToString
-@Entity (name = "board")
-public class BoardEntity {
+public class BoardDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String boardName;
 
     private String status;
 
-    @OneToMany(mappedBy = "board")
-    @JsonIgnore
-    @ToString.Exclude
-    @OrderBy(clause = "id desc")
-    private List<PostEntity> postlist = List.of();
+     private List<PostDto> postList = List.of();
 
 }
