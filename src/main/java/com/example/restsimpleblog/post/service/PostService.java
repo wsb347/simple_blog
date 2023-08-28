@@ -88,4 +88,30 @@ public class PostService {
     }
 
 
+    public PostDto updatePost(Long id, PostDto updatedPost) {
+        PostEntity postEntity = postRepository.findById(id)
+                .map( it -> {
+                    if(!it.getPassword().equals(updatedPost.getPassword())){
+                        String format = "잘못된 패스워드 입니다 %s : %s";
+                        throw new RuntimeException(String.format(format, it.getPassword(), updatedPost.getPassword()));
+                    }
+                    postRepository.save(it);
+                    return it;
+                })
+                .orElseThrow(
+                        () -> {
+                            return new RuntimeException("게시물이 없습니다.");
+                        }
+                );
+
+        if (updatedPost.getTitle() != null) {
+            postEntity.setTitle(updatedPost.getTitle());
+        }
+        if (updatedPost.getContent() != null) {
+            postEntity.setContent(updatedPost.getContent());
+        }
+         var post = postRepository.save(postEntity);
+
+        return postConverter.toDto(post);
+    }
 }

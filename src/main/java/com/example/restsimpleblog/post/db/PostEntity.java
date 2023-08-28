@@ -1,6 +1,7 @@
 package com.example.restsimpleblog.post.db;
 
 import com.example.restsimpleblog.board.db.BoardEntity;
+import com.example.restsimpleblog.post.model.PostDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OrderBy;
@@ -39,4 +40,14 @@ public class PostEntity {
     private String content;
 
     private LocalDateTime date;
+
+
+    public PostEntity toUpdateEntity(PostDto postDto) {
+        PostEntity postEntity = new PostEntity();
+        postEntity.setId(postDto.getId());
+        postEntity.setTitle(postDto.getTitle());
+        postEntity.setContent(postDto.getContent());
+
+        return postEntity;
+    }
 }

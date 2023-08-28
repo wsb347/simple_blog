@@ -1,5 +1,6 @@
 package com.example.restsimpleblog.post.controller;
 
+import com.example.restsimpleblog.board.model.BoardDto;
 import com.example.restsimpleblog.post.db.PostEntity;
 import com.example.restsimpleblog.post.model.PostDto;
 import com.example.restsimpleblog.post.model.PostRequest;
@@ -42,4 +43,9 @@ public class PostApiController {
         postService.delete(viewPostRequest);
     }
 
+    @PutMapping("/{id}")
+    public PostDto updatePost(@PathVariable Long id, @RequestBody PostDto updatedPost) {
+
+        return postService.updatePost(id, updatedPost);
+    }
 }
